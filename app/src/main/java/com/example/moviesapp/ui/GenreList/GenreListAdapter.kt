@@ -2,35 +2,30 @@ package com.example.moviesapp.ui.GenreList
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.moviesapp.R
 import com.example.moviesapp.data.Genre
-import com.example.moviesapp.databinding.RecyclerviewGenreBinding
-import kotlinx.android.synthetic.main.activity_genre_list.view.*
 
-class GenreListAdapter(private val genreList: List<Genre>) : RecyclerView.Adapter<GenreListAdapter.GenreListViewHolder> {
-
+class GenreListAdapter(private val genreList: List<Genre>) : RecyclerView.Adapter<GenreListViewHolder>() {
 
     override fun getItemCount() = genreList.size
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
-        GenreListViewHolder(
-            DataBindingUtil.inflate<RecyclerviewGenreBinding>(
-                LayoutInflater.from(parent.context),
+    override fun onCreateViewHolder(viewGroup: ViewGroup, tag: Int): GenreListViewHolder {
+        return GenreListViewHolder(
+            LayoutInflater.from(
+                viewGroup.context
+            ).inflate(
                 R.layout.recyclerview_genre,
-                parent,
+                viewGroup,
                 false
             )
         )
-
-    override fun onBindViewHolder(holder: GenreListViewHolder, position: Int) {
-        holder.recyclerviewGenreBinding.genre = genreList[position]
     }
 
-
-    inner class GenreListViewHolder(
-        val recyclerviewGenreBinding: RecyclerviewGenreBinding
-    ) : RecyclerView.ViewHolder(recyclerviewGenreBinding.root)
+    override fun onBindViewHolder(holder: GenreListViewHolder, position: Int) {
+        val results = genreList ?: return
+        val result = results[position] ?: return
+        holder.bind(result)
+    }
 
 }

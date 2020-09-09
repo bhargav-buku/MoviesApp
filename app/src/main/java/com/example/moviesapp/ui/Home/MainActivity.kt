@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import com.example.moviesapp.R
-import com.example.moviesapp.ui.GenreList.GenreList
+import com.example.moviesapp.ui.GenreList.GenreListActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -15,7 +15,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun movieDbButton(view: View) {
-        var i = Intent(this, GenreList::class.java)
+        var i = Intent(this, GenreListActivity::class.java)
         startActivity(i)
     }
 }                                                                                                                                                                                                                                                                                                                                                                                                       
